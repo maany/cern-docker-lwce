@@ -1,0 +1,13 @@
+# This file is required to configure rubtime parameters that were not baked into the lwce-baked image.
+# These configuration parameters are specific to every site and therefore were not included in the lwce-baked image, which is supposed to provided core abstract functionality of containerizing the compute engine
+# This condifuration can also be moved to a puppet module. For instance, https://github.com/garethr/garethr-docker
+
+version: "3"
+services:
+    cream-ce:
+        image: lwce-baked
+        build:
+        ports:
+            - 80: 80
+            - 8443 : 8443
+        volumes: ./config:/home/external-config
