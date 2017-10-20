@@ -1,5 +1,7 @@
 
 FROM cern/slc6-base
+MAINTAINER Mayank Sharma (mayank.sharma@cern.ch)
+
 ########################
 #        UMD
 ########################
@@ -56,11 +58,16 @@ RUN perl -pi.bak -e 's/while.*]/for i in `seq 10`/' /etc/init.d/pbs_server
 
 # Mount Volume for configuration parameters
 VOLUME /ce-config
-# Copy Host Certificate
-COPY /ce-config/host-certificates/hostcert.pem /etc/grid-security/
-COPY /ce-config/host-certificates/hostkey.pem /etc/grid-security/
-RUN chmod 444 /etc/grid-security/hostcert.pem
-RUN chmod 400 /etc/grid-security/hostkey.pem
+
+# init script on launch
+# TODO script should be packaged within the image, using on mount point only for development purposes
+ENTRYPOINT ["/ce-config/init.sh"]
+
+#Copy Host Certificate
+#COPY /ce-config/host-certificates/hostcert.pem /etc/grid-security/
+#COPY /ce-config/host-certificates/hostkey.pem /etc/grid-security/
+#RUN chmod 444 /etc/grid-security/hostcert.pem
+#RUN chmod 400 /etc/grid-security/hostkey.pem
 
 #Fetch actual Hostname of the machine hosting the OS
 
