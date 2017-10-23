@@ -2,18 +2,18 @@
 
 This folder contains the code and resources required to 
  - build a docker image for a creamCE compute element
- - run a container hosting the creamCE compute element
+ - run a container with the image of the creamCE compute element
  
-The following sections describe how to get docker image for creamCE and start a container with it.
+The following sections describe how to get Docker Image for creamCE and run it inside a docker.
 
 # Pre-requisites
 
 ## host-certificates
 You need get host-certificates for your grid site from a [IGTF](https://www.igtf.net) trusted CA.
 You might have to convert the host certficate into a keypair (**hostkey.pem** and **hostcert.pem**). Please follow the instructions [here](https://ca.cern.ch/ca/Help/?kbid=024100) and make sure you have set up the appropriate permissions for your hostkey.pem
-## docker
-You need to have docker installed on the machine where you want to setup creamCE using containers
-You can go through the Get Docker section on the [Docker](https://www.docker.com) website to set it up depending on your host platform.
+## Docker
+You need to have docker installed on the machin.
+You can go through the "Get Docker" section on the [Docker](https://www.docker.com) website to set it up, depending on your host platform(Windows/Mac/Linux).
 For CentOS7, the following snippet will setup docker on your machine:
 ~~~
 # install required packages
@@ -33,8 +33,8 @@ sudo systemctl start docker
 # Verify installation by running a hello world container. See the output to see if the installation was a success.
 sudo docker run hello-world
 ~~~
-# Additional Files and Folders
-After you have cloned this repository locally, you need to add the following directories:
+# Configuration files/Additional Files and Folders
+After you have cloned this repository locally, you need to create a host-certificates directory under the ce-config folder:
  - cern-docker-lwce/CE/host-certificates
  
 You can use the following snippet:
@@ -43,7 +43,6 @@ git clone https://github.com/maany/cern-docker-lwce
 cd cern-docker-lwce
 mkdir ./CE/host-certificates
 ~~~
-
 Next, 
  - Copy your **hostkey.pem** and **hostcert.pem** inside host-certificates directory you've just created.
  - Provide the YAIM configurations through the following files:
@@ -84,14 +83,14 @@ Please note that the final direcrory structure should look like:
  
  ## Build docker image
  If you want to build the docker image locally, you can build one from the Dockerfile included in the source code.
-  - cd into the directory /cern-docker-ce/CE
-  - build a docker image using
+  - cd into the directory cern-docker-ce/CE
+  - build a docker image using the command
   `docker build -t lwce .`
   
 # Start a container
  
 ```
-# please be sure to specify the placeholder {location_of_cern_docker_lwce}
+# please ensure that you specify the correct value for the placeholder {location_of_cern_docker_lwce}
 sudo docker run -d -it --name=mountest --mount type=bind,source={location_of_cern_docker_lwce}/CE/ce-config,target=/ce-config lwce /bin/bash
 
 ```
