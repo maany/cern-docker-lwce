@@ -67,7 +67,7 @@ VOLUME /ce-config
 
 # init script on launch
 # TODO script should be packaged within the image, using on mount point only for development purposes
-#ENTRYPOINT ["/ce-config/init.sh"]
+ENTRYPOINT ["/ce-config/init.sh"]
 
 #Copy Host Certificate
 #COPY /ce-config/host-certificates/hostcert.pem /etc/grid-security/
