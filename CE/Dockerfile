@@ -2,14 +2,16 @@
 FROM cern/slc6-base
 MAINTAINER Mayank Sharma (mayank.sharma@cern.ch)
 ########################
-# Misc software
+#   Misc packages
 ########################
 
+#install sudo and wget
 RUN yum install -y \
-	sudo
+	sudo \
+	wget
 
 ########################
-#        UMD
+#        UMD 3
 ########################
 
 # install yum-priorities
@@ -24,10 +26,6 @@ RUN yum install -y \
 #########################
 #    Torque + Maui
 #########################
-
-#install wget
-RUN yum install -y \
-	wget
 
 #Torque + Maui are most easily obtained from the EGI third-party repository
 RUN wget -O /etc/yum.repos.d/EGI-third-party.repo \
@@ -68,21 +66,5 @@ VOLUME /ce-config
 # init script on launch
 # TODO script should be packaged within the image, using on mount point only for development purposes
 ENTRYPOINT ["/ce-config/init.sh"]
-
-#Copy Host Certificate
-#COPY /ce-config/host-certificates/hostcert.pem /etc/grid-security/
-#COPY /ce-config/host-certificates/hostkey.pem /etc/grid-security/
-#RUN chmod 444 /etc/grid-security/hostcert.pem
-#RUN chmod 400 /etc/grid-security/hostkey.pem
-
-#Fetch actual Hostname of the machine hosting the OS
-
-#Export PORTS
-
-#Execute YAIM
-
-#Firewall settings
-
-#Test with pbsnodes -a
 
 
