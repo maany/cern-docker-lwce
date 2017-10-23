@@ -33,6 +33,9 @@ sudo systemctl start docker
 # Verify installation by running a hello world container. See the output to see if the installation was a success.
 sudo docker run hello-world
 ~~~
+## permissions for init.sh
+init.sh needs to be an executable:
+` chmod "+x" {path_to_cern_docker_lwce_repo}/cern-docker-lwce/CE/ce-config/init.sh`
 # Configuration files/Additional Files and Folders
 After you have cloned this repository locally, you need to create a host-certificates directory under the ce-config folder:
  - cern-docker-lwce/CE/host-certificates
@@ -90,8 +93,8 @@ Please note that the final direcrory structure should look like:
 # Start a container
  
 ```
-# please ensure that you specify the correct value for the placeholder {location_of_cern_docker_lwce}
-sudo docker run -d -it --name=mountest --mount type=bind,source={location_of_cern_docker_lwce}/CE/ce-config,target=/ce-config lwce /bin/bash
+# please ensure that you specify the correct value for the placeholder {path_to_cern_docker_lwce_repo}
+sudo docker run -d -it --name=mountest --mount type=bind,source={path_to_cern_docker_lwce_repo}/CE/ce-config,target=/ce-config lwce /bin/bash
 
 ```
 
