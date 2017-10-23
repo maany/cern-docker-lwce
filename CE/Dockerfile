@@ -1,6 +1,12 @@
 
 FROM cern/slc6-base
 MAINTAINER Mayank Sharma (mayank.sharma@cern.ch)
+########################
+# Misc software
+########################
+
+RUN yum install -y \
+	sudo
 
 ########################
 #        UMD
@@ -61,7 +67,7 @@ VOLUME /ce-config
 
 # init script on launch
 # TODO script should be packaged within the image, using on mount point only for development purposes
-ENTRYPOINT ["/ce-config/init.sh"]
+#ENTRYPOINT ["/ce-config/init.sh"]
 
 #Copy Host Certificate
 #COPY /ce-config/host-certificates/hostcert.pem /etc/grid-security/

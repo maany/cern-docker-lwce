@@ -13,13 +13,19 @@ echo "Setting permissions for host certificates..."
 chmod 600 /etc/grid-security/hostkey.pem
 chmod 644 /etc/grid-security/hostcert.pem
 
+#move configuration files to the correct place
+cp /ce-config/CE/wn-list.conf /root/
+cp /ce-config/CE/users.conf /root/
+cp /ce-config/CE/groups.conf /root/
+cp /ce-config/CE/edgusers.conf /root/
+
 #run YAIM
 echo "Starting YAIM..."
 /opt/glite/yaim/bin/yaim -c \
 	-s /ce-config/CE/cream-info.def \
 	-n creamCE \
 	-n TORQUE_server \
-	-n TORQUE_util
+	-n TORQUE_utils
 
 
 
