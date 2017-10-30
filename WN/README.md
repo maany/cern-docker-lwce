@@ -4,7 +4,7 @@ This folder contains the code and resources required to
  - build a docker image for a worker node
  - run a container with the image of the worker node
  
-The following sections describe how to get Docker Image for creamCE and run it inside a docker.
+The following sections describe how to get Docker Image for Worker Node and run it inside a docker.
 
 # Pre-requisites
 
