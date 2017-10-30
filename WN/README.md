@@ -68,7 +68,7 @@ Please note that the final direcrory structure inside the WN directory should lo
  
  ## Build docker image
  If you want to build the docker image locally, you can build one from the Dockerfile included in the source code.
-  - cd into the directory cern-docker-ce/WN
+  - cd into the directory cern-lightweight-site/WN
   - build a docker image using the command
   `docker build -t lwwn .`
   
