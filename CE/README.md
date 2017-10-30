@@ -12,7 +12,7 @@ The following sections describe how to get Docker Image for creamCE and run it i
 You need get host-certificates for your grid site from a [IGTF](https://www.igtf.net) trusted CA.
 You might have to convert the host certficate into a keypair (**hostkey.pem** and **hostcert.pem**). Please follow the instructions [here](https://ca.cern.ch/ca/Help/?kbid=024100) and make sure you have set up the appropriate permissions for your hostkey.pem
 ## Docker
-You need to have docker installed on the machin.
+You need to have docker installed on the machine.
 You can go through the "Get Docker" section on the [Docker](https://www.docker.com) website to set it up, depending on your host platform(Windows/Mac/Linux).
 For CentOS7, the following snippet will setup docker on your machine:
 ~~~
@@ -35,15 +35,15 @@ sudo docker run hello-world
 ~~~
 ## permissions for init.sh
 init.sh needs to be an executable:
-` chmod "+x" {path_to_cern_docker_lwce_repo}/cern-docker-lwce/CE/ce-config/init.sh`
+` chmod "+x" {path_to_cern_lightweight_site_repo}/CE/ce-config/init.sh`
 # Configuration files/Additional Files and Folders
 After you have cloned this repository locally, you need to create a host-certificates directory under the ce-config folder:
- - cern-docker-lwce/CE/host-certificates
+ - cern-lightweight-site/CE/host-certificates
  
 You can use the following snippet:
 ~~~
-git clone https://github.com/maany/cern-docker-lwce
-cd cern-docker-lwce
+git clone https://github.com/maany/cern-lightweight-site
+cd cern-lightweight-site
 mkdir ./CE/host-certificates
 ~~~
 Next, 
@@ -55,30 +55,26 @@ Next,
    - wn-list.conf : list the fully qualified domain name of the worker codes
    - edgusers.conf
 
-Please note that the final direcrory structure should look like:
+Please note that the final direcrory structure inside the CE directory should look like:
 ```
 .
-├── CE
-│   ├── ce-config
-│   │   ├── CE
-│   │   │   ├── cream-info.def
-│   │   │   ├── edgusers.conf
-│   │   │   ├── groups.conf
-│   │   │   ├── users.conf
-│   │   │   └── wn-list.conf
-│   │   ├── host-certificates
-│   │   │   ├── hostcert.pem
-│   │   │   └── hostkey.pem
-│   │   └── init.sh
-│   └── Dockerfile
-├── CE-baked
-│   ├── docker-compose.yml
-│   └── Dockerfile
+├── ce-config
+│   ├── CE
+│   │   ├── cream-info.def
+│   │   ├── edgusers.conf
+│   │   ├── groups.conf
+│   │   ├── users.conf
+│   │   └── wn-list.conf
+│   ├── host-certificates
+│   │   ├── hostcert.pem
+│   │   └── hostkey.pem
+│   └── init.sh
+├── Dockerfile
 └── README.md
 ```
 # Get the Docker Image 
  
- You can either download the docker image directly from [Docker Hub](https://hub.docker.com/r/maany/lightweight-site-ce/) or you can build the image on your machine using the Dockerfile included in the source code.
+You can either download the docker image directly from [Docker Hub](https://hub.docker.com/r/maany/lightweight-site-ce/) or you can build the image on your machine using the Dockerfile included in the source code.
  
  ## Download Docker Image
  
@@ -86,15 +82,15 @@ Please note that the final direcrory structure should look like:
  
  ## Build docker image
  If you want to build the docker image locally, you can build one from the Dockerfile included in the source code.
-  - cd into the directory cern-docker-ce/CE
+  - cd into the directory cern-lightweight-site/CE
   - build a docker image using the command
   `docker build -t lwce .`
   
 # Start a container
  
 ```
-# please ensure that you specify the correct value for the placeholder {path_to_cern_docker_lwce_repo}
-sudo docker run -d -it --name=mountest --mount type=bind,source={path_to_cern_docker_lwce_repo}/CE/ce-config,target=/ce-config lwce /bin/bash
+# please ensure that you specify the correct value for the placeholder {path_to_cern_lightweight_site_repo}
+sudo docker run -d -it --name=ce --mount type=bind,source={path_to_cern_lightweight_site_repo}/CE/ce-config,target=/ce-config --net=host lwce /bin/bash
 
 ```
 
