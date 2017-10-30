@@ -46,4 +46,4 @@ VOLUME /wn-config
 
 # init script on launch
 # TODO script should be packaged within the image, using on mount point only for development purposes
-ENTRYPOINT ["/wn-config/init.sh"]
+#ENTRYPOINT ["/wn-config/init.sh"]
