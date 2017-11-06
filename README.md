@@ -3,3 +3,4 @@ Please follow the instructions specified in the README.md files in the sub-direc
 
 - CE : resources and code to build creamCE image and run creamCE in a container
 - CE-baked: (work in progress)
+- WN : resources and code to build worker node image and run it in a container
