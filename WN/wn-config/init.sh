@@ -13,3 +13,8 @@ echo "Starting YAIM..."
 	-s /wn-config/wn-info.def \
 	-n WN \
 	-n TORQUE_client
+
+# start daemons
+service sshd start
+service crond start
+#service autofs start

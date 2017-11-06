@@ -27,5 +27,8 @@ echo "Starting YAIM..."
 	-n TORQUE_server \
 	-n TORQUE_utils
 
-
+# start daemons
+service sshd start
+service crond start
+#service autofs start
 
