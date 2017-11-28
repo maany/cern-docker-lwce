@@ -25,7 +25,7 @@ echo "Starting YAIM..."
 	-s /ce-config/CE/cream-info.def \
 	-n creamCE \
 	-n TORQUE_server \
-	-n TORQUE_utils
+	-n TORQUE_utils 
 
 # start daemons
 service sshd start
